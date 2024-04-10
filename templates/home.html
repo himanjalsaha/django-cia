@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records</title>
+</head>
+<body>
+    <h1>Student Records</h1>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }} - {{ student.marks }}
+                <form action="{% url 'delete_student' student.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_student' %}">Add Student</a>
+</body>
+</html>
